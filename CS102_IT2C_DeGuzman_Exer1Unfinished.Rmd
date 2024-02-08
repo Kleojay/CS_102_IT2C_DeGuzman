@@ -1,0 +1,109 @@
+---
+title: "Lab Exercise 1"
+author: "Arjay De Guzman"
+date: "2024-02-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rvest)
+library(dplyr)
+library(polite)
+library(tidyverse)
+
+url <- "https://www.amazon.co.uk/s?k=World+Balance&i=fashion&crid=VDEHTKYQXSH&sprefix=world+balance%2Cfashion%2C276&ref=nb_sb_noss_2"
+
+  session <- bow(url,user_agent = "For Educational Purpose")
+  amazon <- read_html(url)
+
+  worldbalance <- scrape(session) %>%
+  html_nodes ("span.a-text-normal") %>%
+  html_text
+  worldbalance
+  
+  worldbalanceprices <- scrape(session) %>%
+  html_nodes ("span.a-offscreen") %>%
+  html_text
+  worldbalanceprices
+  
+  worldbalanceratings <- scrape(session) %>%
+  html_nodes ("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom") %>%
+  html_text
+  worldbalanceratings
+  
+  worldbalancereviews <- scrape(session) %>%
+  html_nodes ("span.a-size-base.s-underline-text") %>%
+  html_text
+  worldbalancereviews
+
+
+url2 <- "https://www.amazon.co.uk/s?k=World+Balance&i=fashion&page=2&crid=VDEHTKYQXSH&qid=1707354032&sprefix=world+balance%2Cfashion%2C276&ref=sr_pg_1"
+
+session2 <- bow(url2, user_agent = "For Educational Purpose")
+amazon2 <- read_html(url2)
+
+worldbalance2 <- scrape(session2) %>%
+  html_nodes("span.a-size-mini.a-spacing-none.a-color-base.s-line-clamp-4") %>%
+  html_text()
+
+worldbalanceprices2 <- scrape(session2) %>%
+  html_nodes("span.a-offscreen") %>%
+  html_text()
+
+worldbalanceratings2 <- scrape(session2) %>%
+  html_nodes("span.a-icon-alt") %>%
+  html_text()
+
+worldbalancereviews2 <- scrape(session2) %>%
+  html_nodes("span.a-size-base") %>%
+  html_text()
+
+url3 <- "https://www.amazon.co.uk/s?k=World+Balance&i=fashion&page=3&crid=VDEHTKYQXSH&qid=1707354164&sprefix=world+balance%2Cfashion%2C276&ref=sr_pg_2"
+
+session3 <- bow(url3, user_agent = "For Educational Purpose")
+amazon3 <- read_html(url3)
+
+worldbalance3 <- scrape(session3) %>%
+  html_nodes("span.a-text-normal") %>%
+  html_text()
+
+worldbalanceprices3 <- scrape(session3) %>%
+  html_nodes("span.a-offscreen") %>%
+  html_text()
+
+worldbalanceratings3 <- scrape(session3) %>%
+  html_nodes("span.a-icon-alt") %>%
+  html_text()
+
+worldbalancereviews3 <- scrape(session3) %>%
+  html_nodes("span.a-size-base") %>%
+  html_text()
+```
+
+
+```{r}
+urls <- c(
+  "https://www.amazon.co.uk/s?k=World+Balance&i=fashion&crid=VDEHTKYQXSH&sprefix=world+balance%2Cfashion%2C276&ref=nb_sb_noss_2",
+  "https://www.amazon.co.uk/s?k=World+Balance&i=fashion&page=2&crid=VDEHTKYQXSH&qid=1707354032&sprefix=world+balance%2Cfashion%2C276&ref=sr_pg_1",
+  "https://www.amazon.co.uk/s?k=World+Balance&i=fashion&page=3&crid=VDEHTKYQXSH&qid=1707354164&sprefix=world+balance%2Cfashion%2C276&ref=sr_pg_2"
+)
+
+worldbalance_list <- list()
+
+for (url in urls) {
+  session <- html_session(url)
+  worldbalance_names <- session %>%
+    html_nodes("span.a-text-normal") %>%
+    html_text()
+
+  worldbalance_list <- c(worldbalance_list, worldbalance_names)
+  worldbalance_list100 <- worldbalance_list[1:100]
+}
+
+
+print(worldbalance_list100
+```
