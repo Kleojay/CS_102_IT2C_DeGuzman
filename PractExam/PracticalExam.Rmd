@@ -1,0 +1,135 @@
+---
+title: "Practical Exam"
+author: "Arjay De Guzman"
+date: "2024-03-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Load the built-in warpbreaks dataset.
+```{r}
+data ("warpbreaks")
+
+```
+
+
+Find out, in a single command, which columns of warpbreaks are either numeric or
+integer. What are the data types of each column?
+```{r}
+str(warpbreaks)
+
+```
+
+
+
+How many observations does it have?
+```{r}
+nrow(warpbreaks)
+```
+
+
+
+Is numeric a natural data type for the columns which are stored as such? Convert to integer when necessary.
+#yes it is a natural data type for columns which are stored in warpbreaks
+
+
+Error messages in R sometimes report the underlying type of an object rather than the user-level class. Derive from the following code and error message what the underlying type. Explain what is the error all about. Do not just copy the error message that was displayed.
+
+#A few operations require matching data types to function. You are attempting to convert a list, which can contain a variety of data kinds, straight into an integer, which is a single numeric number,this is where you going to encounter the problem "Error: 'list' object cannot be coerced to type 'integer'". 
+```{r}
+#warpbreaks1 <- as.integer(warpbreaks)
+```
+
+
+
+Read the complete file using readLines.
+```{r}
+exampleFile <- readLines ("exampleFile.txt")
+exampleFile
+```
+
+
+
+Separate the vector of lines into a vector containing comments and a vector containing the data. Hint: use grepl.
+```{r}
+commentLine<- exampleFile[grepl("^//", exampleFile)]
+dataLine<- exampleFile[!grepl("^//", exampleFile)]
+commentLine
+dataLine
+```
+
+
+
+Extract the date from the first comment line and display on the screen “It was created data.”
+```{r}
+date <- gsub(".*Created data: (.*)<.*", "\\1", commentLine[1])
+cat("It was created data", date, "\n")
+```
+
+
+
+A. Split the character vectors in the vector containing data lines by semicolon (;) using strsplit.
+```{r}
+#splitData<- lapply(data, function(x) unlist(strsplit(x, ";")))
+#splitData
+```
+#[[1]]
+#[1] "M"    "28"   "81.3"
+
+#[[2]]
+#[1] "male" "45"  
+
+#[[3]]
+#[1] "Female" "17"     "57,2"  
+
+#[[4]]
+#[1] "fem." "64"   "62.8"
+
+
+B.Find the maximum number of fields retrieved by split. Append rows that are shorter with NA's.
+```{r}
+#maxFields <- max(sapply(splitData, length))
+#splitData<- lapply(splitData, function(x) c(x, rep(NA, maxFields - length(x))))
+#maxFields
+#splitData
+```
+#[1] 3
+#[[1]]
+#[1] "M"    "28"   "81.3"
+
+#[[2]]
+#[1] "male" "45"   NA    
+
+#[[3]]
+#[1] "Female" "17"     "57,2"  
+
+#[[4]]
+#[1] "fem." "64"   "62.8"
+
+
+
+Use unlist and matrix to transform the data to row-column format.
+```{r}
+#matrixData <- matrix(unlist(splitData), ncol = maxFields, byrow = TRUE)
+#matrixData
+```
+#  [,1]     [,2] [,3]  
+#[1,] "M"      "28" "81.3"
+#[2,] "male"   "45" NA    
+#[3,] "Female" "17" "57,2"
+#[4,] "fem."   "64" "62.8"
+
+
+From comment lines 2-4, extract the names of the fields. Set these as colnames for the matrix you just created.
+```{r}
+#field_names <- strsplit(comments[2:4], ": ")
+#colnames(matrixData) <- field_names
+#print(matrixData)
+```
+#     c("// Field 1", "Gender") c("// Field 2", "Age (in years)") c("// Field 3", "Weight (in kg)")
+#[1,] "M"                       "28"                              "81.3"                           
+#[2,] "male"                    "45"                              NA                               
+#[3,] "Female"                  "17"                              "57,2"                           
+#[4,] "fem."                    "64"                              "62.8"               
