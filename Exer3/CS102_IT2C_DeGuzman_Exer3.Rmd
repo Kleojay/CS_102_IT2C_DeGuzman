@@ -1,0 +1,133 @@
+---
+title: "Untitled"
+author: "Arjay De Guzman"
+date: "2024-03-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+
+#install.packages("dplyr")
+#install.packages("rvest")
+#install.packages("polite")
+#install.packages("httr")
+
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+
+
+reviews <- data.frame()
+
+link <- "https://www.imdb.com/title/tt15398776/reviews?ref_=tt_urv"
+session <- bow(link, user_agent = "Educational Purpose")
+
+scrapeNodes <- function(selector) {
+  scrape(session) %>%
+    html_nodes(selector) %>%
+    html_text(trim = TRUE)
+}
+
+titleMovie <- scrapeNodes("a.subnav_heading")
+reviewer <- scrapeNodes("span.display-name-link")[1:10]
+scrapedDate <- scrapeNodes("span.review-date")[1:10]
+scrapedRating <- scrapeNodes("span.rating-other-user-rating")[1:10]
+scrapedReview <- scrapeNodes("div.text.show-more__control")[1:10]
+scrapedTitleReview <- scrapeNodes("a.title")[1:10]
+
+reviews <- rbind(reviews, data.frame(
+  movie_title = rep(titleMovie, 10),
+  reviewer_name = reviewer,
+  review_date = scrapedDate,
+  review_rating = scrapedRating,
+  review_content = scrapedReview,
+  review_title = scrapedTitleReview
+))
+
+reviews
+
+```
+
+CREATING CONNECTIONS
+
+```{r}
+
+library(dplyr,dbplyr)
+library(RMySQL)
+
+#creating connections
+connection <- dbConnect(RMySQL::MySQL(),
+                        dsn="MariaDB-connection",
+                        Server = "localhost",
+                        dbname = "2C_DeGuzman_Movie", 
+                        user = "root")
+          
+
+```
+
+LISTING TABLES AND FIELDS
+
+```{r}
+dbListTables(connection)
+dbListFields(connection,"reviews")
+```
+
+READING DATA FROM DATABASE
+
+```{r}
+
+review_data <- dbGetQuery(connection, "SELECT * FROM 2C_DeGuzman_Movie.reviews")
+
+glimpse(review_data)
+
+```
+
+INSERTING REVIEWS TO DATABASE
+
+```{r}
+
+#use the gsub function to replace all single quotes in the review_content and review_title columns with two single quotes (''). 
+#This will ensure that any single quotes in the text are properly escaped in the SQL query.
+
+for (i in 1:nrow(reviews)) {
+    query <- paste0("INSERT INTO reviews (movie_title, reviewer_name, review_date, review_rating, review_content, review_title) 
+                  VALUES ('", reviews$movie_title[i],"','", reviews$reviewer_name[i], "','", reviews$review_date[i],"','", reviews$review_rating[i], "','",
+                  gsub("'","''", reviews$review_content[i]), "','", gsub("'","''", reviews$review_title[i]), "')")
+  
+  #execute query
+  query_result <- dbSendQuery(connection, query)
+  
+  #clear result after executing query
+  dbClearResult(query_result)
+}
+
+```
+
+READ AND VIEW INSERTED DATA
+
+```{r}
+
+review_data <- dbGetQuery(connection, "SELECT * FROM 2C_DeGuzman_Movie.reviews")
+
+
+# VIEW REVIEWS without primary key "id"
+review_data[,c(2:7)]
+
+#View(review_data[,c(2:7)])
+
+#Export to csv
+write.csv(review_data[,c(2:7)], "review_data.csv")
+
+```
+
+```{r}
+# Close the database connection
+dbDisconnect(connection)
+
+```
