@@ -1,0 +1,1378 @@
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+
+#First Page: 34 Products of Shoes
+
+
+```{r, Warning = False}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+
+amazonShoes_products <- data.frame()
+
+shoesLink1 = "https://www.amazon.co.uk/s?k=Shoes&crid=1ZE3WM5VXPDHS&sprefix=shoes%2Caps%2C608&ref=nb_sb_noss_1"
+
+session1 <- html_session(shoesLink1,
+           user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(session, selector){
+  session %>%
+    html_nodes(selector) %>%
+    html_text
+}
+
+scrapedCategory <- "Shoes"
+
+scrapedName <- scrapeNodes(session1, "span.a-text-normal")
+scrapedName <- scrapedName[2:35]
+
+scrapedPrice <- scrapeNodes(session1, "span.a-offscreen")
+scrapedPrice <- scrapedPrice[2:35]
+scrapedPrice
+
+scrapedRatings <- scrapeNodes(session1, "span.a-icon-alt")
+scrapedRatings <- scrapedRatings[2:35]
+
+scrapedReviews <- scrapeNodes(session1, "span.a-size-base.s-underline-text")
+scrapedReviews <- scrapedReviews[2:35]
+
+amazonShoes_products <- rbind(amazonShoes_products, data.frame(category = scrapedCategory,Name = scrapedName,
+                                                       Price = scrapedPrice,
+                                                       Ratings = scrapedRatings,
+                                                       No_Of_Reviews = scrapedReviews))
+
+
+#Second Page: 34 Products of Shoes
+
+
+shoesLink2 = "https://www.amazon.co.uk/s?k=Shoes&page=2&crid=1ZE3WM5VXPDHS&qid=1710377508&sprefix=shoes%2Caps%2C608&ref=sr_pg_2"
+
+session1 <- html_session(shoesLink2,
+           user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(session, selector){
+  session %>%
+    html_nodes(selector) %>%
+    html_text
+}
+
+scrapedCategory <- "Shoes"
+
+scrapedName <- scrapeNodes(session1, "span.a-text-normal")
+scrapedName <- scrapedName[2:35]
+
+scrapedPrice <- scrapeNodes(session1, "span.a-offscreen")
+scrapedPrice <- scrapedPrice[2:35]
+scrapedPrice
+
+scrapedRatings <- scrapeNodes(session1, "span.a-icon-alt")
+scrapedRatings <- scrapedRatings[2:35]
+
+scrapedReviews <- scrapeNodes(session1, "span.a-size-base.s-underline-text")
+scrapedReviews <- scrapedReviews[2:35]
+
+amazonShoes_products <- rbind(amazonShoes_products, data.frame(category = scrapedCategory,Name = scrapedName,
+                                                       Price = scrapedPrice,
+                                                       Ratings = scrapedRatings,
+                                                       No_Of_Reviews = scrapedReviews))
+
+
+#Third Page: 34 Products of Shoes
+
+
+shoesLink3 = "https://www.amazon.co.uk/s?k=Shoes&page=3&crid=1ZE3WM5VXPDHS&qid=1710377781&sprefix=shoes%2Caps%2C608&ref=sr_pg_3"
+
+session1 <- html_session(shoesLink3,
+           user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(session, selector){
+  session %>%
+    html_nodes(selector) %>%
+    html_text
+}
+
+scrapedCategory <- "Shoes"
+
+scrapedName <- scrapeNodes(session1, "span.a-text-normal")
+scrapedName <- scrapedName[2:35]
+
+scrapedPrice <- scrapeNodes(session1, "span.a-offscreen")
+scrapedPrice <- scrapedPrice[2:35]
+scrapedPrice
+
+scrapedRatings <- scrapeNodes(session1, "span.a-icon-alt")
+scrapedRatings <- scrapedRatings[2:35]
+
+scrapedReviews <- scrapeNodes(session1, "span.a-size-base.s-underline-text")
+scrapedReviews <- scrapedReviews[2:35]
+
+amazonShoes_products <- rbind(amazonShoes_products, data.frame(category = scrapedCategory,Name = scrapedName,
+                                                       Price = scrapedPrice,
+                                                       Ratings = scrapedRatings,
+                                                       No_Of_Reviews = scrapedReviews))
+
+
+
+amazonShoes_products <- amazonShoes_products[1:100,]
+
+
+View(amazonShoes_products)
+
+```
+
+
+
+Amazon Product: 100 Slipper
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+
+#First Page: 34 Products of Slipper
+
+amazon_Slipper <- data.frame()
+
+slipperLink1 = "https://www.amazon.co.uk/s?k=Slippers&crid=24578QJGQYXW3&sprefix=slippers%2Caps%2C391&ref=nb_sb_noss_1"
+
+session1 <- html_session(slipperLink1,
+           user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(session, selector){
+  session %>%
+    html_nodes(selector) %>%
+    html_text
+}
+
+scrapedCategory <- "Slippers"
+
+scrapedName <- scrapeNodes(session1, "span.a-text-normal")
+scrapedName <- scrapedName[2:35]
+
+scrapedPrice <- scrapeNodes(session1, "span.a-offscreen")
+scrapedPrice <- scrapedPrice[2:35]
+scrapedPrice
+
+scrapedRatings <- scrapeNodes(session1, "span.a-icon-alt")
+scrapedRatings <- scrapedRatings[2:35]
+
+scrapedReviews <- scrapeNodes(session1, "span.a-size-base.s-underline-text")
+scrapedReviews <- scrapedReviews[2:35]
+
+amazon_Slipper <- rbind(amazon_Slipper, data.frame(category = scrapedCategory,Name = scrapedName,
+                                                       Price = scrapedPrice,
+                                                       Ratings = scrapedRatings,
+                                                       No_Of_Reviews = scrapedReviews))
+
+
+#Second Page: 34 Products of Slipper
+
+
+slipperLink2 = "https://www.amazon.co.uk/s?k=Slippers&page=2&crid=24578QJGQYXW3&qid=1710378124&sprefix=slippers%2Caps%2C391&ref=sr_pg_2"
+
+session1 <- html_session(slipperLink2,
+           user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(session, selector){
+  session %>%
+    html_nodes(selector) %>%
+    html_text
+}
+
+scrapedCategory <- "Slippers"
+
+scrapedName <- scrapeNodes(session1, "span.a-text-normal")
+scrapedName <- scrapedName[2:35]
+
+scrapedPrice <- scrapeNodes(session1, "span.a-offscreen")
+scrapedPrice <- scrapedPrice[2:35]
+
+scrapedRatings <- scrapeNodes(session1, "span.a-icon-alt")
+scrapedRatings <- scrapedRatings[2:35]
+
+scrapedReviews <- scrapeNodes(session1, "span.a-size-base.s-underline-text")
+scrapedReviews <- scrapedReviews[2:35]
+
+amazon_Slipper <- rbind(amazon_Slipper, data.frame(category = scrapedCategory,Name = scrapedName,
+                                                       Price = scrapedPrice,
+                                                       Ratings = scrapedRatings,
+                                                       No_Of_Reviews = scrapedReviews))
+#Thirs Page: 34 Products of Slipper
+
+slipperLink3 = "https://www.amazon.co.uk/s?k=Slippers&page=3&crid=24578QJGQYXW3&qid=1710378264&sprefix=slippers%2Caps%2C391&ref=sr_pg_3"
+
+session1 <- html_session(slipperLink3,
+           user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(session, selector){
+  session %>%
+    html_nodes(selector) %>%
+    html_text
+}
+
+scrapedCategory <- "Slippers"
+
+scrapedName <- scrapeNodes(session1, "span.a-text-normal")
+scrapedName <- scrapedName[2:35]
+
+scrapedPrice <- scrapeNodes(session1, "span.a-offscreen")
+scrapedPrice <- scrapedPrice[2:35]
+
+scrapedRatings <- scrapeNodes(session1, "span.a-icon-alt")
+scrapedRatings <- scrapedRatings[2:35]
+
+scrapedReviews <- scrapeNodes(session1, "span.a-size-base.s-underline-text")
+scrapedReviews <- scrapedReviews[2:35]
+
+amazon_Slipper <- rbind(amazon_Slipper, data.frame(category = scrapedCategory,Name = scrapedName,
+                                                       Price = scrapedPrice,
+                                                       Ratings = scrapedRatings,
+                                                       No_Of_Reviews = scrapedReviews))
+
+amazon_Slipper <- amazon_Slipper[1:100,]
+
+
+View(amazon_Slipper)
+```
+
+10 Products
+
+```{r}
+
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+slip1 = data.frame()
+scrapedCategory <- "slip"
+
+link = "https://www.amazon.co.uk/RockDove-Two-Tone-Slippers-Texture-Lounging/dp/B01MR32LQT/ref=sr_1_5?dib=eyJ2IjoiMSJ9.p_YAbJdQJGhmLYuR2kkD9uxouaKBoiIClmShahCN1YmFu6BK2YsNZnWX2OGrbex2ccjhKcMZ8wO81Yy-EutaPugLzINNYmMpqjXsFD2gkneHxsV_hZTOg46lIclZDh4Vu-am06R-693FooOpsvr4zNk4HgxlByfjsmWx8ttS3T4IdZk2YC5ynFL5kge16pVnJEJf2V1KiTkG8HCu0XEqACPYh0RvzIwVVQiUcThUdlf3APYQpDBbpVeOWruy7jywxaZdKLcWRs_2xYPgkeH2yel5D3nvuPkoDESWOl6Ixnk.GhSuRQmUPkUkdJ-H1r8L3mKzyMGIUzrd2dgQyi-epcQ&dib_tag=se&keywords=Slippers&qid=1710378639&sr=8-5"
+  
+      sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+      scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text
+      }
+          
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+      
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+      
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+     
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+      
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+      
+slip1 <- rbind(slip1, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = scrapedReviewer,
+                          review = scrapedReview,
+                          date = scrapedDate,
+                         ratings = scrapedprodRating))
+  
+      
+
+link2 = "https://www.amazon.co.uk/Crocs-Unisex-Bayaband-Flip-Cobblestone/dp/B0C5JYW5CK/ref=sr_1_4_sspa?dib=eyJ2IjoiMSJ9.p_YAbJdQJGhmLYuR2kkD9uxouaKBoiIClmShahCN1YmFu6BK2YsNZnWX2OGrbex2ccjhKcMZ8wO81Yy-EutaPugLzINNYmMpqjXsFD2gkneHxsV_hZTOg46lIclZDh4Vu-am06R-693FooOpsvr4zNk4HgxlByfjsmWx8ttS3T4IdZk2YC5ynFL5kge16pVnJEJf2V1KiTkG8HCu0XEqACPYh0RvzIwVVQiUcThUdlf3APYQpDBbpVeOWruy7jywxaZdKLcWRs_2xYPgkeH2yel5D3nvuPkoDESWOl6Ixnk.GhSuRQmUPkUkdJ-H1r8L3mKzyMGIUzrd2dgQyi-epcQ&dib_tag=se&keywords=Slippers&qid=1710378639&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+  
+sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+      
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+      
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+      
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+      
+slip1 <- rbind(slip1, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer2,
+                          review = scrapedReview2,
+                          date = scrapedDate2,
+                         ratings = scrapedprodRating2))
+      
+      
+link3 = "https://www.amazon.co.uk/Chung-Clogs-Mules-Black-2X-Large/dp/B001XCVULC/ref=sr_1_23_sspa?dib=eyJ2IjoiMSJ9.p_YAbJdQJGhmLYuR2kkD9uxouaKBoiIClmShahCN1YmFu6BK2YsNZnWX2OGrbex2ccjhKcMZ8wO81Yy-EutaPugLzINNYmMpqjXsFD2gkneHxsV_hZTOg46lIclZDh4Vu-am06R-693FooOpsvr4zNk4HgxlByfjsmWx8ttS3T4IdZk2YC5ynFL5kge16pVnJEJf2V1KiTkG8HCu0XEqACPYh0RvzIwVVQiUcThUdlf3APYQpDBbpVeOWruy7jywxaZdKLcWRs_2xYPgkeH2yel5D3nvuPkoDESWOl6Ixnk.GhSuRQmUPkUkdJ-H1r8L3mKzyMGIUzrd2dgQyi-epcQ&dib_tag=se&keywords=Slippers&qid=1710378639&sr=8-23-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&psc=1"
+  
+sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+      
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+      
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+      
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+      
+slip1 <- rbind(slip1, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer3,
+                          review = scrapedReview3,
+                          date = scrapedDate3,
+                         ratings = scrapedprodRating3))
+      
+View(slip1)
+```
+
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+slip2 = data.frame()
+scrapedCategory <- "Slip"
+
+
+link = "https://www.amazon.co.uk/VeraCosy-Slippers-Anti-Slip-Lightweight-Breathable/dp/B083GHKX2S/ref=sr_1_56?dib=eyJ2IjoiMSJ9.p_YAbJdQJGhmLYuR2kkD9uxouaKBoiIClmShahCN1YmFu6BK2YsNZnWX2OGrbex2ccjhKcMZ8wO81Yy-EutaPugLzINNYmMpqjXsFD2gkneHxsV_hZTOg46lIclZDh4Vu-am06R-693FooOpsvr4zNk4HgxlByfjsmWx8ttS3T4IdZk2YC5ynFL5kge16pVnJEJf2V1KiTkG8HCu0XEqACPYh0RvzIwVVQiUcThUdlf3APYQpDBbpVeOWruy7jywxaZdKLcWRs_2xYPgkeH2yel5D3nvuPkoDESWOl6Ixnk.GhSuRQmUPkUkdJ-H1r8L3mKzyMGIUzrd2dgQyi-epcQ&dib_tag=se&keywords=Slippers&qid=1710378639&sr=8-56"
+  
+sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+scrapeNodes <- function(selector){
+scrape(sessionProd1) %>%
+html_nodes(selector) %>%
+html_text
+      }
+          
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+     
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+      
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+     
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+      
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+slip2 <- rbind(slip2, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = scrapedReviewer,
+                          review = scrapedReview,
+                          date = scrapedDate,
+                         ratings = scrapedprodRating))
+  
+      
+link2 = "https://www.amazon.co.uk/Skechers-Womens-Keepsakes-Angel-Slipper/dp/B09MDJGB5T/ref=sr_1_57?dib=eyJ2IjoiMSJ9.p_YAbJdQJGhmLYuR2kkD9uxouaKBoiIClmShahCN1YmFu6BK2YsNZnWX2OGrbex2ccjhKcMZ8wO81Yy-EutaPugLzINNYmMpqjXsFD2gkneHxsV_hZTOg46lIclZDh4Vu-am06R-693FooOpsvr4zNk4HgxlByfjsmWx8ttS3T4IdZk2YC5ynFL5kge16pVnJEJf2V1KiTkG8HCu0XEqACPYh0RvzIwVVQiUcThUdlf3APYQpDBbpVeOWruy7jywxaZdKLcWRs_2xYPgkeH2yel5D3nvuPkoDESWOl6Ixnk.GhSuRQmUPkUkdJ-H1r8L3mKzyMGIUzrd2dgQyi-epcQ&dib_tag=se&keywords=Slippers&qid=1710378639&sr=8-57"
+  
+sessionProd2 <- bow(link2,
+user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+      
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+      
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+      
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+      
+slip2 <- rbind(slip2, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer2,
+                          review = scrapedReview2,
+                          date = scrapedDate2,
+                         ratings = scrapedprodRating2))
+      
+link3 = "https://www.amazon.co.uk/Dunlop-Slippers-Ladies-Charcoal-numeric_4/dp/B097BP85J2/ref=sr_1_58?dib=eyJ2IjoiMSJ9.p_YAbJdQJGhmLYuR2kkD9uxouaKBoiIClmShahCN1YmFu6BK2YsNZnWX2OGrbex2ccjhKcMZ8wO81Yy-EutaPugLzINNYmMpqjXsFD2gkneHxsV_hZTOg46lIclZDh4Vu-am06R-693FooOpsvr4zNk4HgxlByfjsmWx8ttS3T4IdZk2YC5ynFL5kge16pVnJEJf2V1KiTkG8HCu0XEqACPYh0RvzIwVVQiUcThUdlf3APYQpDBbpVeOWruy7jywxaZdKLcWRs_2xYPgkeH2yel5D3nvuPkoDESWOl6Ixnk.GhSuRQmUPkUkdJ-H1r8L3mKzyMGIUzrd2dgQyi-epcQ&dib_tag=se&keywords=Slippers&qid=1710378639&sr=8-58"
+  
+sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+      
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+      
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+      
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+slip2 <- rbind(slip2, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer3,
+                          review = scrapedReview3,
+                          date = scrapedDate3,
+                         ratings = scrapedprodRating3))
+      
+View(slip2)
+
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+slip3 = data.frame()
+scrapedCategory <- "Slip"
+
+
+link = "https://www.amazon.co.uk/Nordika-Slippers-Navy-Leather-Closed/dp/B07HS14WP2/ref=sr_1_62_sspa?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-62-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&psc=1"
+  
+sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+scrapeNodes <- function(selector){
+scrape(sessionProd1) %>%
+html_nodes(selector) %>%
+html_text
+      }
+          
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+      
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+      
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+     
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+      
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+      
+slip3 <- rbind(slip3, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = scrapedReviewer,
+                          review = scrapedReview,
+                          date = scrapedDate,
+                         ratings = scrapedprodRating))
+  
+      
+
+link2 = "https://www.amazon.co.uk/FALKE-Womenss-Cuddle-Ankle-M-Grey/dp/B07H5TNKP6/ref=sr_1_60_sspa?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-60-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&psc=1"
+  
+sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+      
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+      
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+      
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+      
+slip3 <- rbind(slip3, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer2,
+                          review = scrapedReview2,
+                          date = scrapedDate2,
+                         ratings = scrapedprodRating2))
+      
+link3 = "https://www.amazon.co.uk/Zizor-Slippers-Outdoor-Non-Slip-Charcoal/dp/B083DMJGMN/ref=sr_1_64?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-64"
+  
+sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+      
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+      
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+      
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+      
+slip3 <- rbind(slip3, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer3,
+                          review = scrapedReview3,
+                          date = scrapedDate3,
+                         ratings = scrapedprodRating3))
+      
+View(slip3)
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+slip4 = data.frame()
+scrapedCategory <- "Slip"
+
+
+link = "https://www.amazon.co.uk/Nordvek-Mens-Sheepskin-Moccasin-Slippers/dp/B07K2YM9SK/ref=sr_1_70_sspa?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-70-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&psc=1"
+  
+sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+scrapeNodes <- function(selector){
+scrape(sessionProd1) %>%
+html_nodes(selector) %>%
+html_text
+      }
+          
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+      
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+      
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+     
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+      
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+      
+slip4 <- rbind(slip4, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = scrapedReviewer,
+                          review = scrapedReview,
+                          date = scrapedDate,
+                         ratings = scrapedprodRating))
+  
+      
+
+
+
+link2 = "https://www.amazon.co.uk/VeraCosy-Ladies-Memory-Slipper-Anti-Skid/dp/B08CGYYZ3K/ref=sr_1_72?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-72"
+  
+sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+      
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+      
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+      
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+      
+slip4 <- rbind(slip4, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer2,
+                          review = scrapedReview2,
+                          date = scrapedDate2,
+                         ratings = scrapedprodRating2))
+      
+      
+      
+link3 = "https://www.amazon.co.uk/Slipper-Memory-Anti-Skid-Outdoor-5-5-6-5/dp/B07GBT2T4D/ref=sr_1_73?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-73"
+  
+sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+      
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+      
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+      
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+      
+slip4 <- rbind(slip4, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer3,
+                          review = scrapedReview3,
+                          date = scrapedDate3,
+                         ratings = scrapedprodRating3))
+      
+View(slip4)
+
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+slip5 = data.frame()
+scrapedCategory <- "Slip"
+
+
+link = "https://www.amazon.co.uk/Jack-Wills-Womens-Slippers-White/dp/B0B2PPRPH1/ref=sr_1_74?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-74"
+  
+sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+scrapeNodes <- function(selector){
+scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text
+      }
+          
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+      
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+      
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+     
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+      
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+      
+slip5 <- rbind(slip5, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = scrapedReviewer,
+                          review = scrapedReview,
+                          date = scrapedDate,
+                         ratings = scrapedprodRating))
+  
+link2 = "https://www.amazon.co.uk/Disney-Nightmare-Christmas-Skellington-Loungewear/dp/B0CF2PPRCQ/ref=sr_1_75?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-75"
+  
+sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+      
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+      
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+      
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+      
+slip5 <- rbind(slip5, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer2,
+                          review = scrapedReview2,
+                          date = scrapedDate2,
+                         ratings = scrapedprodRating2))
+      
+link3 = "https://www.amazon.co.uk/Polar-Memory-Comfort-Outdoor-Slippers/dp/B07RYX9TRD/ref=sr_1_77?dib=eyJ2IjoiMSJ9.Kn9iDTxpVmNnZMsEAnYWhUuxIG4r6bG0upC8yZafd_tlPPVEUgfW_pfyCHxJrhAn2HqIiOFZBveVTfzafHB90WVs0806z2gNN0JvFi5TCPaiI_TiNzGCvh2UOFcFSu-gx9hyX1fcl0p9iZwJ15AnfC71D5vluEY2-XH_iYntQn0DR0hmFDvy4Ti3vRjjqNqv79kPE-WJ_wAQNArmk1rwebOzEQymuIGUs4mjZnerkmmGEu98hDPnrqdFI3Rs0h_OB4X_icHzUe5MbDpnAKXrMad5aBxQbdhs8NKaSH9FUwQ.43LcTvdKytF8G7dOlFUN8GhGIp9-JwCXU5rZE1S8stc&dib_tag=se&keywords=Slippers&qid=1710379199&sr=8-77"
+  
+sessionProd3 <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+
+      
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+      
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+      
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+      
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+      
+slip5 <- rbind(slip5, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer3,
+                          review = scrapedReview3,
+                          date = scrapedDate3,
+                         ratings = scrapedprodRating3))
+      
+View(slip5)
+
+```
+
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+shoes1 = data.frame()
+scrapedCategory <- "Shoes"
+
+
+
+link = "https://www.amazon.co.uk/adidas-DAILY-Fitness-Shoes-Negb%C3%A1s/dp/B082T53SSK/ref=sr_1_1_sspa?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379460&sprefix=shoe%2Caps%2C335&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+  
+sessionProd1 <- bow(link,
+               user_agent = "For Educational Purpose")
+  
+scrapeNodes <- function(selector){
+      scrape(sessionProd1) %>%
+        html_nodes(selector) %>%
+        html_text
+      }
+          
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+      
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+      
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+     
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+      
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+      
+shoes1 <- rbind(shoes1, data.frame(category = scrapedCategory,name = scrapedprodName,
+                          reviewer = scrapedReviewer,
+                          review = scrapedReview,
+                          date = scrapedDate,
+                         ratings = scrapedprodRating))
+  
+      
+link2 = "https://www.amazon.co.uk/adidas-Unisex-Breaknet-Trainers-White/dp/B0BGGVGLGW/ref=sr_1_3_sspa?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-3-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+  
+sessionProd2 <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+      
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+      
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+      
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+      
+      shoes1 <- rbind(shoes1, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                          reviewer = scrapedReviewer2,
+                          review = scrapedReview2,
+                          date = scrapedDate2,
+                         ratings = scrapedprodRating2))
+      
+      
+ 
+    
+    link3 = "https://www.amazon.co.uk/Reebok-Mens-Cushion-Gymnastics-Black/dp/B08146BNV6/ref=sr_1_4_sspa?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+
+sessionProd3 <- bow(link3,
+             user_agent = "For Educational Purpose")
+
+
+    
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+    
+shoes1 <- rbind(shoes1, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                        reviewer = scrapedReviewer3,
+                        review = scrapedReview3,
+                        date = scrapedDate3,
+                       ratings = scrapedprodRating3))
+    
+View(shoes1)
+
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+shoes2 = data.frame()
+scrapedCategory <- "Shoes"
+
+
+###
+
+link = "https://www.amazon.co.uk/Under-Armour-Surge-Running-Shoes/dp/B0968ZVPZY/ref=sr_1_5?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-5"
+
+    sessionProd1 <- bow(link,
+             user_agent = "For Educational Purpose")
+
+    scrapeNodes <- function(selector){
+    scrape(sessionProd1) %>%
+      html_nodes(selector) %>%
+      html_text
+    }
+        
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+    
+    shoes2 <- rbind(shoes2, data.frame(category = scrapedCategory,name = scrapedprodName,
+                        reviewer = scrapedReviewer,
+                        review = scrapedReview,
+                        date = scrapedDate,
+                       ratings = scrapedprodRating))
+
+    
+
+
+
+    link2 = "https://www.amazon.co.uk/adidas-DAILY-Fitness-Gripal-Negb%C3%A1s/dp/B082T5HK9X/ref=sr_1_6?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-6"
+
+sessionProd2 <- bow(link2,
+             user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+
+shoes2 <- rbind(shoes2, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                    reviewer = scrapedReviewer2,
+                    review = scrapedReview2,
+                    date = scrapedDate2,
+                   ratings = scrapedprodRating2))
+
+
+    
+    link3 = "https://www.amazon.co.uk/Clarks-Batcombe-Derbys-Black-Leather/dp/B073GY8DTG/ref=sr_1_7?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-7"
+
+sessionProd3 <- bow(link3,
+             user_agent = "For Educational Purpose")
+
+
+
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+    
+    shoes2 <- rbind(shoes2, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                        reviewer = scrapedReviewer3,
+                        review = scrapedReview3,
+                        date = scrapedDate3,
+                       ratings = scrapedprodRating3))
+    
+View(shoes2)
+
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+shoes3 = data.frame()
+scrapedCategory <- "Shoes"
+
+
+
+
+link = "https://www.amazon.co.uk/PUMA-Unisex-Rebound-Sneaker-Black-Shadow/dp/B0BKB5KSLJ/ref=sr_1_9?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-9"
+
+    sessionProd1 <- bow(link,
+             user_agent = "For Educational Purpose")
+
+    scrapeNodes <- function(selector){
+    scrape(sessionProd1) %>%
+      html_nodes(selector) %>%
+      html_text
+    }
+        
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+    
+    shoes3 <- rbind(shoes3, data.frame(category = scrapedCategory,name = scrapedprodName,
+                        reviewer = scrapedReviewer,
+                        review = scrapedReview,
+                        date = scrapedDate,
+                       ratings = scrapedprodRating))
+
+    
+
+
+######
+
+    link2 = "https://www.amazon.co.uk/Levis-Mens-COURTRIGHT-Sneaker-Brown/dp/B08BLTRBK7/ref=sr_1_10?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-10"
+
+sessionProd2 <- bow(link2,
+             user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+
+shoes3 <- rbind(shoes3, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                    reviewer = scrapedReviewer2,
+                    review = scrapedReview2,
+                    date = scrapedDate2,
+                   ratings = scrapedprodRating2))
+    
+    
+    
+    
+    link3 = "https://www.amazon.co.uk/Jack-Jones-Jfwcurtis-Casual-Sneaker/dp/B0B61RV7JR/ref=sr_1_12?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-12"
+
+sessionProd3 <- bow(link3,
+             user_agent = "For Educational Purpose")
+
+
+    
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+
+shoes3 <- rbind(shoes3, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                    reviewer = scrapedReviewer3,
+                    review = scrapedReview3,
+                    date = scrapedDate3,
+                   ratings = scrapedprodRating3))
+    
+View(shoes3)
+
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+shoes4 = data.frame()
+scrapedCategory <- "Shoes"
+
+
+###
+
+link = "https://www.amazon.co.uk/PUMA-Unisex-Leader-Training-Bunting/dp/B07DC1WX5C/ref=sr_1_37?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-37"
+
+sessionProd1 <- bow(link,
+         user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(selector){
+scrape(sessionProd1) %>%
+  html_nodes(selector) %>%
+  html_text
+}
+    
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+
+shoes4 <- rbind(shoes4, data.frame(category = scrapedCategory,name = scrapedprodName,
+                    reviewer = scrapedReviewer,
+                    review = scrapedReview,
+                    date = scrapedDate,
+                   ratings = scrapedprodRating))
+
+    
+
+
+
+
+link2 = "https://www.amazon.co.uk/Kickers-Fragma-Strap-Leather-Shoes/dp/B01D4WQ4LY/ref=sr_1_38?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-38"
+
+sessionProd2 <- bow(link2,
+         user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+
+shoes4 <- rbind(shoes4, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                    reviewer = scrapedReviewer2,
+                    review = scrapedReview2,
+                    date = scrapedDate2,
+                   ratings = scrapedprodRating2))
+
+
+
+    
+link3 = "https://www.amazon.co.uk/Skechers-Status-LORANO-Shoes-Canvas/dp/B07H4Q696X/ref=sr_1_40?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-40"
+
+sessionProd3 <- bow(link3,
+         user_agent = "For Educational Purpose")
+
+
+
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+
+shoes4 <- rbind(shoes4, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                    reviewer = scrapedReviewer3,
+                    review = scrapedReview3,
+                    date = scrapedDate3,
+                   ratings = scrapedprodRating3))
+
+View(shoes4)
+
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+
+shoes5 = data.frame()
+scrapedCategory <- "Shoes"
+
+
+
+link = "https://www.amazon.co.uk/adidas-Mens-Courtblock-Sneaker-Shadow/dp/B0C3JJ8Z9D/ref=sr_1_52?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-52"
+
+sessionProd1 <- bow(link,
+         user_agent = "For Educational Purpose")
+
+scrapeNodes <- function(selector){
+scrape(sessionProd1) %>%
+  html_nodes(selector) %>%
+  html_text
+}
+    
+scrapedprodName <- scrapeNodes("span.a-size-large.product-title-word-break")
+scrapedprodName
+
+scrapedReviewer <- scrapeNodes("span.a-profile-name")
+scrapedReviewer <- scrapedReviewer[1:10]
+
+
+scrapedReview <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview <- scrapedReview[1:10]
+
+
+scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate <- scrapedDate[1:10]
+
+
+scrapedprodRating <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating <- scrapedprodRating[1:10]
+
+
+shoes5 <- rbind(shoes5, data.frame(category = scrapedCategory,name = scrapedprodName,
+                    reviewer = scrapedReviewer,
+                    review = scrapedReview,
+                    date = scrapedDate,
+                   ratings = scrapedprodRating))
+
+
+
+link2 = "https://www.amazon.co.uk/Clarks-Cotrell-Loafers-Tobacco-Leather/dp/B07FQW49X7/ref=sr_1_53?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-53"
+
+sessionProd2 <- bow(link2,
+         user_agent = "For Educational Purpose")
+
+
+scrapedReviewer2 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer2 <- scrapedReviewer2[1:10]
+
+
+scrapedReview2 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview2 <- scrapedReview2[1:10]
+
+
+scrapedDate2 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate2 <- scrapedDate2[1:10]
+
+
+scrapedprodRating2 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating2 <- scrapedprodRating2[1:10]
+
+
+shoes5 <- rbind(shoes5, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                    reviewer = scrapedReviewer2,
+                    review = scrapedReview2,
+                    date = scrapedDate2,
+                   ratings = scrapedprodRating2))
+    
+
+    
+link3 = "https://www.amazon.co.uk/Hush-Puppies-Mens-Mason-Sneaker/dp/B08KJJ1JLD/ref=sr_1_50?crid=QCQGTF86JJYC&dib=eyJ2IjoiMSJ9.pqlng8pbiVdD9SPz8XTtskP9g4MXesA8zEOQczk_w9ONqjTvpldRxCBHftUY07uu7qJ3pa2NdC3IEgfYh7igCJZiRYHJ0ayV5gzgAOHdIJMSnik9XiQ6cVEInEMp-FeX3euc7m2hm5RJoToFseHbeHAVsUyO6xZFqUUFEF4xH7AOXBACQeIOXb7dn1J1XcJwPbFQu-9jvjwwsJdi403irR-gA9LccmyaxRikcKM7g0sEtzwxW290xcFeP62dcKfpKsPM7k_t3a1P6OC1sQlMKnWHJQdlRx8QjJ3UmaM8K_4.NsusgXAam_aJavcAimAWc5unFkMaM_Q29G6PnYpxWmM&dib_tag=se&keywords=Shoes&qid=1710379473&sprefix=shoe%2Caps%2C335&sr=8-50"
+
+sessionProd3 <- bow(link3,
+         user_agent = "For Educational Purpose")
+
+
+
+scrapedReviewer3 <- scrapeNodes("span.a-profile-name")
+scrapedReviewer3 <- scrapedReviewer3[1:10]
+
+
+scrapedReview3 <- scrapeNodes("div.a-expander-content.reviewText.review-text-content.a-expander-partial-collapse-content")
+scrapedReview3 <- scrapedReview3[1:10]
+
+
+scrapedDate3 <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+scrapedDate3 <- scrapedDate3[1:10]
+
+
+scrapedprodRating3 <- scrapeNodes("span.a-icon-alt")
+scrapedprodRating3 <- scrapedprodRating3[1:10]
+
+
+shoes5 <- rbind(shoes5, data.frame(category = scrapedCategory ,name = scrapedprodName,
+                    reviewer = scrapedReviewer3,
+                    review = scrapedReview3,
+                    date = scrapedDate3,
+                   ratings = scrapedprodRating3))
+
+View(shoes5)
+
+```
+
+```{r}
+
+slip_shoes_reviews <- rbind(slip1, slip2, slip3, slip4, slip5, shoes1, shoes2, shoes3, shoes4, shoes5)
+View(slip_shoes_reviews)
+
+write.csv(slip_shoes_reviews,file = "slip_shoes_review.csv", )
+
+```
