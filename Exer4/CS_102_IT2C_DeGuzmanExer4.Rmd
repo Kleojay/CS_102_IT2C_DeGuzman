@@ -1,0 +1,146 @@
+---
+title: "CS102_IT2C_DeGuzman_Exer4"
+author: "Arjay De Guzman"
+date: "2024-03-18"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+install.packages("dplyr")
+install.packages("stringr")
+install.packages("httr")
+install.packages("rvest")
+
+```{r}
+library(dplyr)
+library(stringr)
+library(httr)
+library(rvest)
+
+url <- 'https://arxiv.org/search/?query=Database&searchtype=all&abstracts=show&order=-announced_date_first&size=50'
+
+parse_url(url)
+
+start <- proc.time()
+title <- NULL
+author <- NULL
+subject <- NULL
+abstract <- NULL
+meta <- NULL
+
+pages <- seq(from = 0, to = 100, by = 50)
+
+for( i in pages){
+  
+  tmp_url <- modify_url(url, query = list(start = i))
+  tmp_list <- read_html(tmp_url) %>% 
+    html_nodes('p.list-title.is-inline-block') %>% 
+    html_nodes('a[href^="https://arxiv.org/abs"]') %>% 
+    html_attr('href')
+  
+  for(j in 1:length(tmp_list)){
+    
+    tmp_paragraph <- read_html(tmp_list[j])
+    
+# TITLE
+    tmp_title <- tmp_paragraph %>% html_nodes('h1.title.mathjax') %>% html_text(T)
+    tmp_title <-  gsub('Title:', '', tmp_title)
+    title <- c(title, tmp_title)
+# AUTHOR
+    tmp_author <- tmp_paragraph %>% html_nodes('div.authors') %>% html_text
+    tmp_author <- gsub('\\s+',' ',tmp_author)
+    tmp_author <- gsub('Authors:','',tmp_author) %>% str_trim
+    author <- c(author, tmp_author)  
+    
+# SUBJECT
+    tmp_subject <- tmp_paragraph %>% html_nodes('span.primary-subject') %>% html_text(T)
+    subject <- c(subject, tmp_subject)
+    
+# ABSTRACT
+    tmp_abstract <- tmp_paragraph %>% html_nodes('blockquote.abstract.mathjax') %>% html_text(T)
+    tmp_abstract <- gsub('\\s+',' ',tmp_abstract)
+    tmp_abstract <- sub('Abstract:','',tmp_abstract) %>% str_trim
+    abstract <- c(abstract, tmp_abstract)
+    
+# META
+    tmp_meta <- tmp_paragraph %>% html_nodes('div.submission-history') %>% html_text
+    tmp_meta <- lapply(strsplit(gsub('\\s+', ' ',tmp_meta), '[v1]', fixed = T),'[',2) %>% unlist %>% str_trim
+    meta <- c(meta, tmp_meta)
+    cat(j, "paper\n")
+    Sys.sleep(1)
+    
+  }
+  cat((i/50) + 1,'/ 9 page\n')
+  
+}
+papers <- data.frame(title, author, subject, abstract, meta)
+end <- proc.time()
+end - start # Total Elapsed Time
+
+# Export the result
+save(papers, file = "ArxivDatabase.RData")
+write.csv(papers, file = "ArxivDatabase.csv")
+
+```
+
+```{r}
+
+library(DBI)
+library(odbc)
+library(RMySQL)
+library(dplyr,dbplyr)
+  
+ connection <- dbConnect(RMySQL::MySQL(),
+                         dsn="MariaDB-connection",
+                         Server = "localhost",
+                         dbname = "DeGuzmanExer4DB", 
+                         user = "root", 
+                         password = "") 
+```
+
+
+```{r}
+library(readr)
+
+articles <- read.csv("ArxivDatabase.csv")
+tail(articles)
+
+```
+
+#writing table to database 
+
+```{r}
+
+
+#dbWriteTable(connection,'ArxivExer4', articles, append = TRUE)
+
+```
+
+#listing table and fiels 
+```{r}
+dbListTables(connection)
+dbListFields(connection,'ArxivExer4')
+```
+
+#reading data from table 
+```{r}
+
+review_data <- dbGetQuery(connection, "SELECT * FROM DeGuzmanExer4DB.ArxivExer4")
+glimpse(review_data)
+
+```
+
+#Close the database connection
+
+```{r}
+
+dbDisconnect(connection)
+
+```
+
