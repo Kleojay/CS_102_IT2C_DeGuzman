@@ -1,0 +1,447 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+  bookdown::pdf_document2:
+  latex_engine: xelatex
+  sansfont: Calibri Light
+---
+#Scraping 50 Amazon Products
+
+```{}
+
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+library(readr)
+
+scrapeAmazonReviews <- function(product_name, url_stub, pages) {
+  product_df <- data.frame()
+
+  for (page in pages) {
+    link <- paste0("https://www.amazon.com.au/",url_stub,"/ref=cm_cr_arp_d_paging_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+    session <- bow(link, user_agent = "Educational Purpose")
+
+    scrapeNodes <- function(selector) {
+      scrape(session) %>%
+        html_nodes(selector) %>%
+        html_text(trim = TRUE)
+    }
+
+    scrapedTitle <- scrapeNodes("span.a-size-base.review-title.a-color-base.review-title-content.a-text-bold")[1:10]
+    scrapedReviewer <- scrapeNodes("span.a-profile-name")[1:10]
+    scrapedReview <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+    scrapedDate <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+    scrapedRating <- scrapeNodes("span.a-icon-alt")[1:10]
+    scrapedType <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+
+    product_df <- rbind(product_df, data.frame(
+      prod_name = product_name,
+      title = scrapedTitle,
+      reviewer = scrapedReviewer,
+      review = scrapedReview,
+      date = scrapedDate,
+      ratings = scrapedRating,
+      type_of_purchase = scrapedType
+    ))
+
+    #Sys.sleep(1)
+  }
+
+  return(product_df)
+}
+
+```
+
+#1-10 Shoes: World Balance
+
+
+```{}    
+product1 <- scrapeAmazonReviews(
+  "New Balance 1080V12 Running Sneakers",
+  "New-Balance-1080V12-Running-Sneakers/product-reviews/B096N89QMH",
+  3:7
+)
+
+
+product2 <- scrapeAmazonReviews(  
+  "TOMMY HILFIGER Essential Leather Sneaker",
+  "TOMMY-HILFIGER-Essential-Leather-Sneaker/product-reviews/B07DJJNSBT",
+  6:10
+)
+
+
+product3 <- scrapeAmazonReviews(
+  "Xero Shoes HFS Lightweight Barefoot Inspired",
+  "Xero-Shoes-HFS-Lightweight-Barefoot-Inspired/product-reviews/B0844SFLL9",
+  3:7
+)
+
+
+product4 <- scrapeAmazonReviews(
+  "ROCKPORT Chranson Brown Black 10 5",
+  "ROCKPORT-Chranson-Brown-Black-10-5/product-reviews/B005UF9SW6",
+  3:7
+)
+
+
+product5 <- scrapeAmazonReviews(
+  "Salomon Mens PRO GTX Black",
+  "Salomon-Mens-PRO-GTX-Black/product-reviews/B01HD6R9RK",
+  3:7
+)
+
+product6 <- scrapeAmazonReviews(
+  "Lacoste Mens Trainers Black-45",
+  "Lacoste-Mens-Trainers-Black-45/product-reviews/B0B526TBJ4",
+  3:7
+)
+
+
+product7 <- scrapeAmazonReviews(
+  "Skechers Performance Mens Sneaker Black",
+  "Skechers-Performance-Mens-Sneaker-Black/product-reviews/B072FBNZHL",
+  3:7
+)
+
+
+product8 <- scrapeAmazonReviews(
+  "KEEN Targhee II Waterproof Hiking",
+  "KEEN-Targhee-II-Waterproof-Hiking/product-reviews/B003O2SERW",
+  3:7
+)
+
+
+product9 <- scrapeAmazonReviews(
+  "Brooks Addiction Walker V Strap Black",
+  "Brooks-Addiction-Walker-V-Strap-Black/product-reviews/B07L4TC8CV",
+  3:7
+)
+
+
+product10 <- scrapeAmazonReviews(
+  "NIKE Juniper Sneaker Sanddrift Obsidian",
+  "NIKE-Juniper-Sneaker-Sanddrift-Obsidian/product-reviews/B0BNJHKJJY",
+  6:10
+)
+
+```
+
+#11-20 Nike: Pants
+
+```{}    
+product11 <- scrapeAmazonReviews(
+  "NIKE-Unisex-Park20-Pants-Black",
+  "NIKE-Unisex-Park20-Pants-Black/product-reviews/B07W82S9V2",
+  3:7
+)
+
+
+product12 <- scrapeAmazonReviews(
+  "Nike-Soccer-Pants-Length-Trousers",
+  "Nike-Soccer-Pants-Length-Trousers/product-reviews/B0B59FT11R",
+  3:7
+)
+
+
+product13 <- scrapeAmazonReviews(
+  "Nike-Sport-Trousers-Heather-Silver",
+  "Nike-Sport-Trousers-Heather-Silver/product-reviews/B07RB6DRW4",
+  3:7
+)
+
+
+product14 <- scrapeAmazonReviews(
+  "Nike-Unisex-Dri-fit-Dri-Fit-Black",
+  "Nike-Unisex-Dri-fit-Dri-Fit-Black/product-reviews/B07W4SXB6J",
+  3:7
+)
+
+
+product15 <- scrapeAmazonReviews(
+  "Nike-Mens-Trousers-XL",
+  "Nike-Mens-Trousers-XL/product-reviews/B08TQH8PD2",
+  3:7
+)
+
+
+product16 <- scrapeAmazonReviews(
+  "Nike-CW6907-010-Pantalone-FELPATO-Pants",
+  "Nike-CW6907-010-Pantalone-FELPATO-Pants/product-reviews/B08QW9GN2R",
+  3:7
+)
+
+
+product17 <- scrapeAmazonReviews(
+  "Nike-Mens-Sweatpants-Heather-Black",
+  "Nike-Mens-Sweatpants-Heather-Black/product-reviews/B08QW88FN7",
+  3:7
+)
+
+
+product18 <- scrapeAmazonReviews(
+  "Nike-Sportswear-Essential-Leggings-Heather",
+  "Nike-Sportswear-Essential-Leggings-Heather/product-reviews/B08SMN1PJQ",
+  3:7
+)
+
+
+product19 <- scrapeAmazonReviews(
+  "Nike-Sportswear-Fleece-Pants-X-Small",
+  "Nike-Sportswear-Fleece-Pants-X-Small/product-reviews/B07T4V7SH9",
+  4:8
+)
+
+
+product20 <- scrapeAmazonReviews(
+  "Nike-Sportswear-Joggers-Midnight-X-Large",
+  "Nike-Sportswear-Joggers-Midnight-X-Large/product-reviews/B07KD6YPMG",
+  3:7
+)
+```
+
+
+
+#Scraping 21-30 Cetaphil Products
+
+```{}
+product21 <- scrapeAmazonReviews(
+  "Cetaphil-Gentle-Cleanser-1L",
+  "Cetaphil-Gentle-Cleanser-1L/product-reviews/B00AR6PUOS",
+  3:7
+)
+
+
+product22 <- scrapeAmazonReviews(
+  "Cetaphil-Moisturising-Cream-Sensitive-Skin",
+  "Cetaphil-Moisturising-Cream-Sensitive-Skin/product-reviews/B01ACQ2S5Q",
+  3:7
+)
+
+
+product23 <- scrapeAmazonReviews(
+  "Cetaphil-Moisturising-Lotion-Skin-Types",
+  "Cetaphil-Moisturising-Lotion-Skin-Types/product-reviews/B07CC5WB7N",
+  3:7
+)
+
+
+product24 <- scrapeAmazonReviews(
+  "Cetaphil-Daily-Hydrating-Lotion-Hyaluronic",
+  "Cetaphil-Daily-Hydrating-Lotion-Hyaluronic/product-reviews/B084MYLHW5",
+  3:7
+)
+
+
+product25 <- scrapeAmazonReviews(
+  "Cetaphil-Liposomal-Lotion-Resistant-Protection",
+  "Cetaphil-Liposomal-Lotion-Resistant-Protection/product-reviews/B0785R9JYL",
+  3:7
+)
+
+product26 <- scrapeAmazonReviews(
+  "Cetaphil-Baby-Gentle-Shampoo-400ml",
+  "Cetaphil-Baby-Gentle-Shampoo-400ml/product-reviews/B07TDKG26J",
+  3:7
+)
+
+
+product27 <- scrapeAmazonReviews(
+  "Cetaphil-Gentle-Foaming-Cleanser-236",
+  "Cetaphil-Gentle-Foaming-Cleanser-236/product-reviews/B08DFSJ7F7",
+  3:7
+)
+
+
+product28 <- scrapeAmazonReviews(
+  "CETAPHIL-050658-Moisturising-Cream-100g",
+  "CETAPHIL-050658-Moisturising-Cream-100g/product-reviews/B009AX3HLC",
+  3:7
+)
+
+
+product29 <- scrapeAmazonReviews(
+  "Cetaphil-Cleansing-Hypoallergenic-Non-Acnegenic-Non-Comedogenic",
+  "Cetaphil-Cleansing-Hypoallergenic-Non-Acnegenic-Non-Comedogenic/product-reviews/B076V39K49",
+  3:7
+)
+
+
+product30 <- scrapeAmazonReviews(
+  "Cetaphil-Daily-Exfoliating-Cleanser-178",
+  "Cetaphil-Daily-Exfoliating-Cleanser-178/product-reviews/B07ZGCRQ1N",
+  3:7
+)
+```
+
+
+
+#31-40 Iphone Products
+
+```{}
+product31 <- scrapeAmazonReviews(
+  "Apple-iPhone-14-128GB-Renewed",
+  "Apple-iPhone-14-128GB-Renewed/product-reviews/B0BXQ2WMVM",
+  3:7
+)
+
+
+product32 <- scrapeAmazonReviews(
+  "APPLE-SLP-iPhone-Rose-Grade",
+  "APPLE-SLP-iPhone-Rose-Grade/product-reviews/B0948VXJGN",
+  3:7
+)
+
+
+product33 <- scrapeAmazonReviews(
+  "Apple-iPhone-14-Pro-Black",
+  "Apple-iPhone-14-Pro-Black/product-reviews/B0BR81JBD7",
+  3:7
+)
+
+
+product34 <- scrapeAmazonReviews(
+  "eSTUFF-ES580143-10BULK-Apple-iPhone-Mini",
+  "eSTUFF-ES580143-10BULK-Apple-iPhone-Mini/product-reviews/B09XDKBGND",
+  3:7
+)
+
+
+product35 <- scrapeAmazonReviews(
+  "Google-GHL1X-Unlocked-Smartphone-Charcoal",
+  "Google-GHL1X-Unlocked-Smartphone-Charcoal/product-reviews/B0BZJK1ZTY",
+  3:7
+)
+
+
+product36 <- scrapeAmazonReviews(
+  "SP-Connect-Moto-Bundle-iPhone",
+  "SP-Connect-Moto-Bundle-iPhone/product-reviews/B099KMXGGM",
+  3:7
+)
+
+
+product37 <- scrapeAmazonReviews(
+  "Lightning-3Pack【0-5m-Certified-Charging-Compatible",
+  "Lightning-3Pack【0-5m-Certified-Charging-Compatible/product-reviews/B0CPXJHKTH",
+  3:7
+)
+
+
+product38 <- scrapeAmazonReviews(
+  "Charger【Apple-Certified】-Charger-Charging-Compatible",
+  "Charger【Apple-Certified】-Charger-Charging-Compatible/product-reviews/B0B5L3DWSF",
+  3:7
+)
+
+
+product39 <- scrapeAmazonReviews(
+  "Minthouz-Wireless-Charging-Earphones-Compatible",
+  "Minthouz-Wireless-Charging-Earphones-Compatible/product-reviews/B09X33F8Q3",
+  3:7
+)
+
+
+product40 <- scrapeAmazonReviews(
+  "LifeProof-FRĒ-Waterproof-Case-iPhone",
+  "LifeProof-FRĒ-Waterproof-Case-iPhone/product-reviews/B07VSPTR5K",
+  3:7
+)
+
+```
+
+
+#41-50 THE NORTH FACE Products
+
+
+```{}
+product41 <- scrapeAmazonReviews(
+  "Samsung-Galaxy-Buds2-Pro-Graphite",
+  "Samsung-Galaxy-Buds2-Pro-Graphite/product-reviews/B0B8MQRGV8/",
+  3:7
+)
+
+
+product42 <- scrapeAmazonReviews(
+  "SAMSUNG-Ultimate-microSD-microSDXC-MB-MY512SA",
+  "SAMSUNG-Ultimate-microSD-microSDXC-MB-MY512SA/product-reviews/B0CBMF71DP",
+  3:7
+)
+
+
+product43 <- scrapeAmazonReviews(
+  "Samsung-A346B-Galaxy-Unlocked-Awesome-Graphite",
+  "Samsung-A346B-Galaxy-Unlocked-Awesome-Graphite/product-reviews/B0BWS9WQDY",
+  3:7
+)
+
+
+product44 <- scrapeAmazonReviews(
+  "Samsung-Internal-Solid-State-Drive",
+  "Samsung-Internal-Solid-State-Drive/product-reviews/B0B9C4DKKG",
+  3:7
+)
+
+
+product45 <- scrapeAmazonReviews(
+  "Samsung-MU-PC1T0R-WW-Aluminium-Portable",
+  "Samsung-MU-PC1T0R-WW-Aluminium-Portable/product-reviews/B087DDP3L1",
+  3:7
+)
+
+
+product46 <- scrapeAmazonReviews(
+  "THE NORTH FACE Women's Etip Gloves",
+  "North-Womens-Recycled-Glove-Black/product-reviews/B083LWD6LT",
+  3:7
+)
+
+
+product47 <- scrapeAmazonReviews(
+  "Samsung-Galaxy-A14-Black-Carriers",
+  "Samsung-Galaxy-A14-Black-Carriers/product-reviews/B0BYWB6R4N",
+  3:7
+)
+
+
+product48 <- scrapeAmazonReviews(
+  "Samsung-Unlocked-Awesome-Graphite-Branding",
+  "Samsung-Unlocked-Awesome-Graphite-Branding/product-reviews/B0BYMPCWHN",
+  3:7
+)
+
+
+product49 <- scrapeAmazonReviews(
+  "Samsung-Galaxy-Lime-Unlocked-128GB",
+  "Samsung-Galaxy-Lime-Unlocked-128GB/product-reviews/B0BYMRY1SP",
+  3:7
+)
+
+
+product50 <- scrapeAmazonReviews(
+  "Samsung-A145R-Galaxy-64GB-Green",
+  "Samsung-A145R-Galaxy-64GB-Green/product-reviews/B0BYWBT8MH",
+  3:7
+)
+
+```
+
+
+
+```{}
+allProds = data.frame();
+
+allProds <- rbind(allProds, product1, product2, product3, product4, product5, product6, product7, product8, product9, product10,
+                product11, product12, product13, product14, product15, product16, product17, product18, product19, product20,
+                product21, product22, product23, product24, product25, product26, product27, product28, product29, product30,
+                product31, product32, product33, product34, product35, product36, product37, product38, product39, product40,
+                product41, product42, product43, product44, product45, product46, product47, product48, product49, product50)
+
+save(allProds, file = "amazon.RData")
+
+write.csv(allProds, "ScrapedAmazonProducts.csv")
+#View(allProds)
+
+```
